@@ -1,0 +1,321 @@
+{% extends 'partials/base.html' %} {% block content %}
+
+<h1>Dashboard</h1>
+<h2>ยอดรวมทั้งหมด : {{ total.total_price }} บาท</h2>
+<br><br>
+
+<div class="row mt-2">
+
+    <div class="a">
+      <h3>รูปแบบการจ่ายเงิน</h3>
+      <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+    <div class="b">
+      <h3>จำนวนลูกค้าต่อพื้นที่</h3>
+      <canvas id="myChart2" width="400" height="400"></canvas>
+    </div>
+    <div class="c">
+      <h3>Internet Service</h3>
+      <canvas id="myChart3" width="400" height="400"></canvas>
+    </div>
+    <div class="d">
+      <h3>ยอดรวมแต่ละพื้นที่</h3>
+      <canvas id="myChart4" width="400" height="400"></canvas>
+    </div>
+    <div class="e">
+      <h3>Fault Power Outage</h3>
+      <canvas id="myChart5" width="400" height="400"></canvas>
+    </div>
+    <div class="f">
+      <h3>Fault Cable Cut</h3>
+      <canvas id="myChart6" width="400" height="400"></canvas>
+    </div>
+    <div class="g">
+      <h3>Other</h3>
+      <canvas id="myChart7" width="400" height="400"></canvas>
+    </div>
+    <script>
+ const data = {
+  labels: [{% for customer in customers %}  '{{ customer.PaymentMethod }}',  {% endfor %}],
+  datasets: [
+    {
+      label: "Number",
+      data: [{% for customer in customers %}  {{ customer.total }},  {% endfor %}],
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.8)",
+        "rgba(54, 162, 235, 0.8)",
+        "rgba(255, 206, 86, 0.8)",
+        "rgba(75, 192, 192, 0.8)",
+        "rgba(153, 102, 255, 0.8)",
+        "rgba(255, 159, 64, 0.8)",
+      ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
+      ],
+      borderWidth: 1,
+    },],
+ };
+
+ const config ={
+  type: "pie",
+  data : data,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  },
+ } 
+ const myChart = new Chart(
+  document.getElementById("myChart"),
+  config
+ );
+
+ const data2 = {
+  labels: [{% for customer2 in customers2 %}  '{{ customer2.Area }}',  {% endfor %}],
+  datasets: [
+    {
+      label: "Number",
+      data: [{% for customer2 in customers2 %}  {{ customer2.name_count }},  {% endfor %}],
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.8)",
+        "rgba(54, 162, 235, 0.8)",
+        "rgba(255, 206, 86, 0.8)",
+        "rgba(75, 192, 192, 0.8)",
+        "rgba(153, 102, 255, 0.8)",
+        "rgba(255, 159, 64, 0.8)",
+      ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
+      ],
+      borderWidth: 1,
+    },],
+ };
+
+ const config2 ={
+  type: "pie",
+  data: data2,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  },
+ } 
+ const myChart2 = new Chart(
+  document.getElementById("myChart2"),
+  config2
+ );
+    
+
+ const data3 = {
+  labels: [{% for customer3 in customers3 %}  '{{ customer3.InternetService }}',  {% endfor %}],
+  datasets: [
+    {
+      label: "Number",
+      data: [{% for customer3 in customers3 %}  {{ customer3.name_count }},  {% endfor %}],
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.8)",
+        "rgba(54, 162, 235, 0.8)",
+        "rgba(255, 206, 86, 0.8)",
+        "rgba(75, 192, 192, 0.8)",
+        "rgba(153, 102, 255, 0.8)",
+        "rgba(255, 159, 64, 0.8)",
+      ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
+      ],
+      borderWidth: 1,
+    },],
+ };
+
+ const config3 ={
+  type: "pie",
+  data : data3,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  },
+ } 
+ const myChart3 = new Chart(
+  document.getElementById("myChart3"),
+  config3
+ );
+
+ const data4 = {
+  labels: [{% for customer4 in customers4 %}  '{{ customer4.Area }}',  {% endfor %}],
+  datasets: [
+    {
+      label: "บาท",
+      data: [{% for customer4 in customers4 %}  {{ customer4.total_price }},  {% endfor %}],
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.8)",
+        "rgba(54, 162, 235, 0.8)",
+        "rgba(255, 206, 86, 0.8)",
+        "rgba(75, 192, 192, 0.8)",
+        "rgba(153, 102, 255, 0.8)",
+        "rgba(255, 159, 64, 0.8)",
+      ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
+      ],
+      borderWidth: 1,
+    },],
+ };
+
+ const config4 ={
+  type: "bar",
+  data : data4,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  },
+ } 
+ const myChart4 = new Chart(
+  document.getElementById("myChart4"),
+  config4
+ );
+
+
+ const data5 = {
+  labels: [{% for customer5 in customers5 %}  '{{ customer5.Area }}',  {% endfor %}],
+  datasets: [
+    {
+      label: "ครั้ง",
+      data: [{% for customer5 in customers5 %}  {{ customer5.total_fault }},  {% endfor %}],
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.8)",
+        "rgba(54, 162, 235, 0.8)",
+        "rgba(255, 206, 86, 0.8)",
+        "rgba(75, 192, 192, 0.8)",
+        "rgba(153, 102, 255, 0.8)",
+        "rgba(255, 159, 64, 0.8)",
+      ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
+      ],
+      borderWidth: 1,
+    },],
+ };
+
+ const config5 ={
+  type: "bar",
+  data : data5,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  },
+ } 
+ const myChart5 = new Chart(
+  document.getElementById("myChart5"),
+  config5
+ );
+
+ const data6 = {
+  labels: [{% for customer6 in customers6 %}  '{{ customer6.Area }}',  {% endfor %}],
+  datasets: [
+    {
+      label: "ครั้ง",
+      data: [{% for customer6 in customers6 %}  {{ customer6.total_fault2 }},  {% endfor %}],
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.8)",
+        "rgba(54, 162, 235, 0.8)",
+        "rgba(255, 206, 86, 0.8)",
+        "rgba(75, 192, 192, 0.8)",
+        "rgba(153, 102, 255, 0.8)",
+        "rgba(255, 159, 64, 0.8)",
+      ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
+      ],
+      borderWidth: 1,
+    },],
+ };
+
+ const config6 ={
+  type: "bar",
+  data : data6,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  },
+ } 
+ const myChart6 = new Chart(
+  document.getElementById("myChart6"),
+  config6
+ );
+
+
+ var xValues = ["All Customers", "MultipleLines", "PhoneService", "StreamingTV", "StreamingMovies", "TechSupport", "PaperlessBilling"];
+ var yValues = [{{ customers7.totaldata }}, {{ customers8 }}, {{ customers9}}, {{ customers10}}, {{ customers11}}, {{ customers12}}, {{ customers13}}];
+ var yValues2 = [];
+ var barColors = ["red", "green","blue","orange","pink" ,"brown" ,"gold"];
+ var barColors2 = ["green", "red","brown","blue","orange"];
+ 
+ 
+ new Chart("myChart7", {
+   type: "bar",
+   data: {
+     labels: xValues,
+     datasets: [{
+       backgroundColor: barColors,
+       data: yValues,
+     },]
+   },
+   
+   options: {
+     legend: {display: false},
+     title: {
+       display: true,
+       text: "World Wine Production 2018"
+     }
+   }
+ });
+
+    </script>
+
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'partials/base.html' %} {% block content %}
+
+<h2>ตารางข้อมูล</h2>
+<div class="row mt-2">
+
+  <div class="container">
+  <table id="bootstrapdatatable" class="table table-striped table-bordered" width="100%">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">AccountID</th>
+        <th scope="col">Area</th>
+        <th scope="col">Gender</th>
+        <th scope="col">MultipleLines</th>
+        <th scope="col">InternetService</th>
+        <th scope="col">PhoneService</th>
+        <th scope="col">StreamingTV</th>
+        <th scope="col">StreamingMovies</th>
+        <th scope="col">TechSupport</th>
+        <th scope="col">FaultPowerOutagePerMonth</th>
+        <th scope="col">FaultCableCutPerMonth</th>
+        <th scope="col">Contract</th>
+        <th scope="col">PaperlessBilling</th>
+        <th scope="col">PaymentMethod</th>
+        <th scope="col">MonthlyCharges</th>
+        <th scope="col">TotalCharges</th>
+        <th scope="col">Churn</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in alldata  %}
+      <tr>
+        <td>{{data.id}}</td>
+        <td>{{data.AccountID}}</td>
+        <td>{{data.Area}}</td>
+        <td>{{data.Gender}}</td>
+        <td>{{data.MultipleLines}}</td>
+        <td>{{data.InternetService}}</td>
+        <td>{{data.PhoneService}}</td>
+        <td>{{data.StreamingTV}}</td>
+        <td>{{data.StreamingMovies}}</td>
+        <td>{{data.TechSupport}}</td>
+        <td>{{data.FaultPowerOutagePerMonth}}</td>
+        <td>{{data.FaultCableCutPerMonth}}</td>
+        <td>{{data.Contract}}</td>
+        <td>{{data.PaperlessBilling}}</td>
+        <td>{{data.PaymentMethod}}</td>
+        <td>{{data.MonthlyCharges}}</td>
+        <td>{{data.TotalCharges}}</td>
+        <td>{{data.Churn}}</td>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+
+
+</div>
+{% comment %} <form action="" method="post" enctype="multipart/form-data">
+  <div >
+    {% csrf_token %}
+
+    <br>
+    <input type="hidden" name="alltime" value=0>
+    <div class="col-sm-6">
+      <label for="vehicle1">Gender</label>
+      <input type="checkbox" id="alltime" name="alltime" value=1>
+    </div>
+    <div class="col-sm-6">
+      <label for="vehicle1">MultipleLines</label>
+      <input type="checkbox" id="alltime" name="alltime" value=1>
+    </div>
+    <div class="col-sm-6">
+      <label for="vehicle1">InternetService</label>
+      <input type="checkbox" id="alltime" name="alltime" value=1>
+    </div>
+    <div class="col-sm-6">
+      <label for="vehicle1">PhoneService</label>
+      <input type="checkbox" id="alltime" name="alltime" value=1>
+    </div>
+    <div class="col-sm-6">
+      <label for="vehicle1">StreamingTV</label>
+      <input type="checkbox" id="alltime" name="alltime" value=1>
+    </div>
+    <div class="col-sm-6">
+      <label for="vehicle1">StreamingMovies</label>
+      <input type="checkbox" id="alltime" name="alltime" value=1>
+    </div>
+    <div class="col-sm-6">
+      <label for="vehicle1">TechSupport</label>
+      <input type="checkbox" id="alltime" name="alltime" value=1>
+    </div>
+    <br>
+    <button type="submit" name="submit" class="btn btn-success">ค้นหา</button>
+    <br>
+    <br>
+    </form>
+    {% comment %} <img src="data:image/png;base64, {{chart|safe}}" style="width:80%"> {% endcomment %}   
+  </div> 
+
+
+
+{% endblock %}
